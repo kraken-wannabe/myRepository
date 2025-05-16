@@ -1,0 +1,25 @@
+<script>
+        $(window).load(function () {
+            // Handle x-scroll for background video
+            $('.content-wrapper').attr("style", "overflow-x: hidden; overflow-y: hidden;");
+
+            // Add background video source to video element, load it, then play it after page load
+            $('#background-video-source').attr("src", "../../Media/NewBackgroundVideo.mp4");
+            $('#background-video')[0].load();
+            $('#background-video').get(0).play();
+
+            var quotes = $(".quotes");
+            var quoteIndex = -1;
+
+            (function showNextQuote(counter) {
+                var element = quotes[counter];
+
+                quotes.eq(counter).fadeIn(2000).delay(500).fadeOut(2000);
+                delete quotes[counter];
+                quotes.push(element);
+                setTimeout(function () {
+                    showNextQuote(counter + 1);
+                }, 5000);
+            })(0);
+        });
+ </script>
